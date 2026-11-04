@@ -1,0 +1,2632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de convivencia escolar, Ley 1620 de 2013, debido proceso y Ruta de Atención Integral para instituciones educativas colombianas.">
+    <meta name="theme-color" content="#102a43">
+    <title>Convivencia Escolar | Formación Docente</title>
+
+    <!-- Tailwind CSS: CDN oficial -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconos -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: '#102a43',
+                            900: '#163752',
+                            800: '#1f4665'
+                        },
+                        accent: {
+                            500: '#16a34a',
+                            600: '#15803d'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f4f7fb;
+        }
+
+        .sidebar-link {
+            transition: all .2s ease;
+        }
+
+        .sidebar-link.active {
+            background: #e5f5eb;
+            color: #166534;
+            border-left: 4px solid #16a34a;
+            font-weight: 700;
+        }
+
+        .sidebar-link:not(.active):hover {
+            background: #f0f5f9;
+        }
+
+        .lesson-content {
+            display: none;
+        }
+
+        .lesson-content.open {
+            display: block;
+        }
+
+        .module-panel {
+            display: none;
+        }
+
+        .module-panel.active {
+            display: block;
+            animation: fadeIn .3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .certificate-paper {
+            background: #fff;
+            border: 8px double #b99b58;
+            position: relative;
+        }
+
+        .certificate-paper::before {
+            content: "";
+            position: absolute;
+            inset: 8px;
+            border: 1px solid #dfd2a9;
+            pointer-events: none;
+        }
+
+        .certificate-serif {
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
+        .answer-option {
+            transition: all .2s ease;
+        }
+
+        .answer-option:has(input:checked) {
+            border-color: #16a34a;
+            background: #f0fdf4;
+        }
+
+        @media print {
+            body * {
+                visibility: hidden !important;
+            }
+
+            #certificate,
+            #certificate * {
+                visibility: visible !important;
+            }
+
+            #certificate {
+                display: block !important;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .certificate-paper {
+                width: 100%;
+                min-height: 180mm;
+                box-shadow: none !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            @page {
+                size: landscape;
+                margin: 10mm;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-800">
+
+    <!-- BARRA SUPERIOR -->
+    <header class="bg-navy-950 text-white sticky top-0 z-40 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+
+            <a href="#inicio" class="flex items-center gap-3">
+                <div class="bg-green-500 rounded-xl p-2">
+                    <i data-lucide="graduation-cap" class="w-6 h-6 text-white"></i>
+                </div>
+
+                <div>
+                    <p class="font-bold text-sm sm:text-base">FORMACIÓN DOCENTE</p>
+                    <p class="text-xs text-slate-300">Convivencia y debido proceso</p>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-2 text-sm text-slate-300">
+                <i data-lucide="shield-check" class="w-4 h-4 text-green-400"></i>
+                <span>Marco normativo colombiano</span>
+            </div>
+
+            <button id="mobileMenuButton"
+                    class="md:hidden p-2 rounded-lg hover:bg-white/10"
+                    aria-label="Abrir navegación"
+                    aria-expanded="false">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="inicio" class="bg-navy-950 text-white overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+
+                <div>
+                    <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-3 py-1.5 rounded-full text-sm text-green-300">
+                        <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                        CURSO DE ACTUALIZACIÓN INSTITUCIONAL
+                    </span>
+
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mt-6">
+                        Convivencia escolar,
+                        <span class="text-green-400">Ley 1620</span>
+                        y debido proceso
+                    </h1>
+
+                    <p class="mt-6 text-slate-300 text-base sm:text-lg leading-relaxed">
+                        Fortalece tus competencias para prevenir conflictos,
+                        activar las rutas de atención y documentar actuaciones
+                        escolares con enfoque de derechos, protección integral
+                        y responsabilidad institucional.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 mt-8">
+
+                        <button onclick="goToModule(0)"
+                                class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-xl flex items-center gap-2 transition">
+                            Iniciar formación
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+
+                        <a href="#objetivos"
+                           class="border border-white/30 hover:bg-white/10 px-6 py-3 rounded-xl transition">
+                            Ver objetivos
+                        </a>
+
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-white/15">
+
+                        <div>
+                            <p class="text-2xl font-bold text-green-400">04</p>
+                            <p class="text-xs sm:text-sm text-slate-300 mt-1">Módulos</p>
+                        </div>
+
+                        <div>
+                            <p class="text-2xl font-bold text-green-400">03</p>
+                            <p class="text-xs sm:text-sm text-slate-300 mt-1">Preguntas</p>
+                        </div>
+
+                        <div>
+                            <p class="text-2xl font-bold text-green-400">100%</p>
+                            <p class="text-xs sm:text-sm text-slate-300 mt-1">Aciertos requeridos</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="hidden md:block relative">
+
+                    <div class="absolute inset-0 bg-green-500/10 rounded-full blur-3xl"></div>
+
+                    <div class="relative bg-white/5 border border-white/15 backdrop-blur-sm rounded-3xl p-8">
+
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <p class="text-sm text-slate-300">Tu ruta de aprendizaje</p>
+                                <p class="text-xl font-bold mt-1">Aprender para proteger</p>
+                            </div>
+
+                            <div class="bg-green-500/20 rounded-2xl p-3">
+                                <i data-lucide="shield-check" class="w-8 h-8 text-green-400"></i>
+                            </div>
+                        </div>
+
+                        <div class="space-y-5">
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-blue-400/15 rounded-xl flex items-center justify-center shrink-0">
+                                    <i data-lucide="book-open" class="w-6 h-6 text-blue-300"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Comprender</p>
+                                    <p class="text-sm text-slate-300">Legislación y derechos de los estudiantes.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-green-400/15 rounded-xl flex items-center justify-center shrink-0">
+                                    <i data-lucide="heart-handshake" class="w-6 h-6 text-green-300"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Actuar</p>
+                                    <p class="text-sm text-slate-300">Prevención, atención y seguimiento.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-amber-400/15 rounded-xl flex items-center justify-center shrink-0">
+                                    <i data-lucide="file-check" class="w-6 h-6 text-amber-300"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Documentar</p>
+                                    <p class="text-sm text-slate-300">Evidencias, actas y trazabilidad.</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-8 pt-5 border-t border-white/15 flex items-center gap-3 text-sm text-slate-300">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                            Formación orientada a la práctica educativa.
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- OBJETIVOS -->
+    <section id="objetivos" class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+
+        <div class="text-center max-w-3xl mx-auto">
+            <p class="text-green-700 font-bold text-sm uppercase tracking-widest">
+                Propósito formativo
+            </p>
+
+            <h2 class="text-2xl sm:text-3xl font-bold text-navy-950 mt-3">
+                ¿Qué aprenderás en este curso?
+            </h2>
+
+            <p class="text-slate-600 mt-4 leading-relaxed">
+                Aplicar criterios jurídicos, pedagógicos y documentales para
+                gestionar situaciones de convivencia escolar con oportunidad,
+                imparcialidad, enfoque de derechos y respeto por el debido proceso.
+            </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+
+            <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
+                    <i data-lucide="scale" class="w-6 h-6 text-blue-700"></i>
+                </div>
+                <h3 class="font-bold text-lg mt-4">Interpretar la norma</h3>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                    Reconocer los principales deberes y responsabilidades
+                    derivados de la legislación educativa colombiana.
+                </p>
+            </article>
+
+            <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center">
+                    <i data-lucide="route" class="w-6 h-6 text-green-700"></i>
+                </div>
+                <h3 class="font-bold text-lg mt-4">Activar las rutas</h3>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                    Diferenciar situaciones Tipo I, II y III y reconocer
+                    las actuaciones correspondientes.
+                </p>
+            </article>
+
+            <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center">
+                    <i data-lucide="clipboard-check" class="w-6 h-6 text-amber-700"></i>
+                </div>
+                <h3 class="font-bold text-lg mt-4">Garantizar el proceso</h3>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                    Aplicar garantías de defensa, escucha, imparcialidad
+                    y proporcionalidad conforme al Manual de Convivencia.
+                </p>
+            </article>
+
+            <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center">
+                    <i data-lucide="files" class="w-6 h-6 text-purple-700"></i>
+                </div>
+                <h3 class="font-bold text-lg mt-4">Dejar evidencia</h3>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                    Elaborar registros claros, verificables, confidenciales
+                    y útiles para el seguimiento institucional.
+                </p>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ÁREA DE FORMACIÓN -->
+    <section id="formacion" class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+
+        <div class="mb-8">
+            <p class="text-green-700 font-bold text-sm uppercase tracking-widest">
+                Contenido del curso
+            </p>
+
+            <h2 class="text-2xl sm:text-3xl font-bold text-navy-950 mt-2">
+                Ruta de aprendizaje
+            </h2>
+
+            <p class="text-slate-600 mt-3">
+                Explora los cuatro módulos, consulta las lecciones y aplica
+                lo aprendido antes de presentar la evaluación.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-[280px_1fr] gap-6 items-start">
+
+            <!-- NAVEGACIÓN LATERAL -->
+            <aside id="sidebar"
+                   class="hidden md:block bg-white rounded-2xl border border-slate-200 p-4 shadow-sm md:sticky md:top-24">
+
+                <p class="text-xs uppercase tracking-widest text-slate-400 font-bold px-3 py-2">
+                    Módulos
+                </p>
+
+                <nav class="space-y-2">
+
+                    <button onclick="goToModule(0)"
+                            class="sidebar-link active w-full text-left p-3 rounded-xl flex items-center gap-3"
+                            data-module="0">
+                        <span class="w-9 h-9 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-bold">01</span>
+                        <span>
+                            <span class="block text-sm">Fundamentos</span>
+                            <span class="block text-xs opacity-70">Introducción</span>
+                        </span>
+                    </button>
+
+                    <button onclick="goToModule(1)"
+                            class="sidebar-link w-full text-left p-3 rounded-xl flex items-center gap-3"
+                            data-module="1">
+                        <span class="w-9 h-9 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-bold">02</span>
+                        <span>
+                            <span class="block text-sm">Marco legal</span>
+                            <span class="block text-xs opacity-70">Normativa y rutas</span>
+                        </span>
+                    </button>
+
+                    <button onclick="goToModule(2)"
+                            class="sidebar-link w-full text-left p-3 rounded-xl flex items-center gap-3"
+                            data-module="2">
+                        <span class="w-9 h-9 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-bold">03</span>
+                        <span>
+                            <span class="block text-sm">Estudio de caso</span>
+                            <span class="block text-xs opacity-70">Aplicación práctica</span>
+                        </span>
+                    </button>
+
+                    <button onclick="goToModule(3)"
+                            class="sidebar-link w-full text-left p-3 rounded-xl flex items-center gap-3"
+                            data-module="3">
+                        <span class="w-9 h-9 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-bold">04</span>
+                        <span>
+                            <span class="block text-sm">Actas y evidencias</span>
+                            <span class="block text-xs opacity-70">Documentación</span>
+                        </span>
+                    </button>
+
+                    <button onclick="goToModule(4)"
+                            class="sidebar-link w-full text-left p-3 rounded-xl flex items-center gap-3"
+                            data-module="4">
+                        <span class="w-9 h-9 rounded-lg bg-green-100 text-green-800 flex items-center justify-center">
+                            <i data-lucide="award" class="w-5 h-5"></i>
+                        </span>
+                        <span>
+                            <span class="block text-sm">Certificación</span>
+                            <span class="block text-xs opacity-70">Evaluación final</span>
+                        </span>
+                    </button>
+
+                </nav>
+
+                <div class="mt-6 p-4 bg-slate-50 rounded-xl">
+                    <div class="flex items-center justify-between text-xs text-slate-500">
+                        <span>Avance de navegación</span>
+                        <span id="progressText">0 de 5</span>
+                    </div>
+
+                    <div class="h-2 bg-slate-200 rounded-full mt-3 overflow-hidden">
+                        <div id="progressBar"
+                             class="h-full bg-green-500 rounded-full transition-all"
+                             style="width:0%"></div>
+                    </div>
+
+                    <p class="text-xs text-slate-500 mt-3">
+                        El avance indica los módulos visitados, no una validación
+                        institucional de la formación.
+                    </p>
+                </div>
+
+            </aside>
+
+            <!-- CONTENIDO -->
+            <main class="min-w-0">
+
+                <!-- MÓDULO 1 -->
+                <section class="module-panel active" id="module-0">
+
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+
+                        <div class="bg-gradient-to-r from-navy-950 to-navy-800 p-6 sm:p-8 text-white">
+
+                            <span class="text-green-300 font-bold text-xs uppercase tracking-widest">
+                                Módulo 01
+                            </span>
+
+                            <h2 class="text-2xl sm:text-3xl font-bold mt-3">
+                                Fundamentos de la convivencia escolar
+                            </h2>
+
+                            <p class="text-slate-300 mt-3 leading-relaxed">
+                                Comprende la convivencia como una responsabilidad
+                                compartida y una oportunidad para el aprendizaje,
+                                la protección y la formación ciudadana.
+                            </p>
+
+                        </div>
+
+                        <div class="p-5 sm:p-8">
+
+                            <div class="grid sm:grid-cols-3 gap-4 mb-8">
+
+                                <div class="bg-slate-50 rounded-xl p-4">
+                                    <i data-lucide="clock" class="w-5 h-5 text-green-700"></i>
+                                    <p class="font-semibold mt-2">Tiempo sugerido</p>
+                                    <p class="text-sm text-slate-500">20 minutos</p>
+                                </div>
+
+                                <div class="bg-slate-50 rounded-xl p-4">
+                                    <i data-lucide="target" class="w-5 h-5 text-green-700"></i>
+                                    <p class="font-semibold mt-2">Enfoque</p>
+                                    <p class="text-sm text-slate-500">Prevención y protección</p>
+                                </div>
+
+                                <div class="bg-slate-50 rounded-xl p-4">
+                                    <i data-lucide="users" class="w-5 h-5 text-green-700"></i>
+                                    <p class="font-semibold mt-2">Dirigido a</p>
+                                    <p class="text-sm text-slate-500">Docentes y directivos</p>
+                                </div>
+
+                            </div>
+
+                            <div class="space-y-3">
+
+                                <article class="border border-slate-200 rounded-xl overflow-hidden">
+
+                                    <button onclick="toggleLesson('lesson-1a')"
+                                            class="w-full p-4 text-left flex items-center justify-between gap-4 hover:bg-slate-50">
+                                        <span class="font-bold">1.1. ¿Qué es la convivencia escolar?</span>
+                                        <i data-lucide="chevron-down" class="w-5 h-5 shrink-0"></i>
+                                    </button>
+
+                                    <div id="lesson-1a" class="lesson-content open px-4 pb-5">
+
+                                        <p class="text-slate-600 leading-relaxed">
+                                            Es el conjunto de relaciones que se construyen
+                                            en la comunidad educativa. Una convivencia
+                                            positiva favorece el respeto, la participación,
+                                            la resolución pacífica de conflictos y el ejercicio
+                                            de los derechos humanos, sexuales y reproductivos.
+                                        </p>
+
+                                        <h4 class="font-bold mt-4 mb-2">Principios para la actuación docente</h4>
+
+                                        <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600">
+                                            <li>Escuchar a las personas involucradas sin prejuzgar.</li>
+                                            <li>Proteger la dignidad y la integridad de los estudiantes.</li>
+                                            <li>Prevenir la discriminación y la revictimización.</li>
+                                            <li>Promover el diálogo y la reparación cuando proceda.</li>
+                                            <li>Actuar oportunamente y conforme a los protocolos institucionales.</li>
+                                        </ul>
+
+                                    </div>
+                                </article>
+
+                                <article class="border border-slate-200 rounded-xl overflow-hidden">
+
+                                    <button onclick="toggleLesson('lesson-1b')"
+                                            class="w-full p-4 text-left flex items-center justify-between gap-4 hover:bg-slate-50">
+                                        <span class="font-bold">1.2. Responsabilidades de la comunidad educativa</span>
+                                        <i data-lucide="chevron-down" class="w-5 h-5 shrink-0"></i>
+                                    </button>
+
+                                    <div id="lesson-1b" class="lesson-content px-4 pb-5">
+
+                                        <div class="space-y-4 text-sm text-slate-600">
+
+                                            <div>
+                                                <p class="font-bold text-slate-800">Docentes</p>
+                                                <p>
+                                                    Promover ambientes seguros, intervenir ante
+                                                    situaciones de riesgo, reportar por los canales
+                                                    establecidos y documentar objetivamente los hechos.
+                                                </p>
+                                            </div>
+
+                                            <div>
+                                                <p class="font-bold text-slate-800">Directivos docentes</p>
+                                                <p>
+                                                    Liderar la implementación de los protocolos,
+                                                    garantizar las actuaciones de su competencia
+                                                    y articular las instancias institucionales.
+                                                </p>
+                                            </div>
+
+                                            <div>
+                                                <p class="font-bold text-slate-800">Orientación escolar</p>
+                                                <p>
+                                                    Apoyar las acciones pedagógicas y de orientación
+                                                    dentro de sus competencias, respetando la
+                                                    confidencialidad y los límites de su rol.
+                                                </p>
+                                            </div>
+
+                                            <div>
+                                                <p class="font-bold text-slate-800">Familias y acudientes</p>
+                                                <p>
+                                                    Participar en la formación de los estudiantes
+                                                    y colaborar con las medidas de protección
+                                                    y seguimiento que correspondan.
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </article>
+
+                                <article class="border border-slate-200 rounded-xl overflow-hidden">
+
+                                    <button onclick="toggleLesson('lesson-1c')"
+                                            class="w-full p-4 text-left flex items-center justify-between gap-4 hover:bg-slate-50">
+                                        <span class="font-bold">1.3. ¿Por qué es importante registrar las actuaciones?</span>
+                                        <i data-lucide="chevron-down" class="w-5 h-5 shrink-0"></i>
+                                    </button>
+
+                                    <div id="lesson-1c" class="lesson-content px-4 pb-5">
+
+                                        <p class="text-slate-600 leading-relaxed">
+                                            Los registros permiten reconstruir la secuencia de
+                                            actuaciones, identificar responsables, verificar
+                                            medidas de protección y hacer seguimiento a los acuerdos.
+                                        </p>
+
+                                        <div class="bg-green-50 border border-green-200 rounded-xl p-4 mt-4">
+                                            <p class="font-bold text-green-900">
+                                                Regla práctica
+                                            </p>
+                                            <p class="text-sm text-green-800 mt-1">
+                                                Registrar hechos observables, fechas, fuentes de
+                                                información, decisiones y seguimiento. Evitar
+                                                calificativos, conclusiones anticipadas y juicios
+                                                personales sobre los involucrados.
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </article>
+
+                            </div>
+
+                            <div class="flex justify-end mt-8">
+                                <button onclick="goToModule(1)"
+                                        class="bg-navy-950 hover:bg-navy-800 text-white rounded-xl px-5 py-3 font-semibold flex items-center gap-2">
+                                    Continuar al módulo 2
+                                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MÓDULO 2 -->
+                <section class="module-panel" id="module-1">
+
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+
+                        <div class="bg-gradient-to-r from-navy-950 to-navy-800 p-6 sm:p-8 text-white">
+
+                            <span class="text-green-300 font-bold text-xs uppercase tracking-widest">
+                                Módulo 02
+                            </span>
+
+                            <h2 class="text-2xl sm:text-3xl font-bold mt-3">
+                                Marco legal y debido proceso
+                            </h2>
+
+                            <p class="text-slate-300 mt-3 leading-relaxed">
+                                Identifica las normas fundamentales, los tipos de
+                                situaciones y los criterios que orientan la atención
+                                de los conflictos escolares.
+                            </p>
+
+                        </div>
+
+                        <div class="p-5 sm:p-8">
+
+                            <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-7">
+
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="book-open-check" class="w-6 h-6 text-blue-700 shrink-0"></i>
+
+                                    <div>
+                                        <h3 class="font-bold text-blue-950">Normativa de referencia</h3>
+
+                                        <ul class="mt-3 space-y-3 text-sm text-blue-900">
+
+                                            <li>
+                                                <strong>Constitución Política de Colombia:</strong>
+                                                artículos 29, 44 y 67, entre otras disposiciones aplicables.
+                                            </li>
+
+                                            <li>
+                                                <strong>Ley 115 de 1994:</strong>
+                                                Ley General de Educación.
+                                            </li>
+
+                                            <li>
+                                                <strong>Ley 1098 de 2006:</strong>
+                                                Código de la Infancia y la Adolescencia.
+                                            </li>
+
+                                            <li>
+                                                <strong>Ley 1620 de 2013:</strong>
+                                                Sistema Nacional de Convivencia Escolar y formación
+                                                para el ejercicio de los derechos humanos, sexuales
+                                                y reproductivos y la prevención y mitigación de la violencia escolar.
+                                            </li>
+
+                                            <li>
+                                                <strong>Decreto 1965 de 2013:</strong>
+                                                reglamentación de la Ley 1620, cuyas disposiciones
+                                                pertinentes fueron compiladas en el Decreto 1075 de 2015.
+                                            </li>
+
+                                            <li>
+                                                <strong>Manual de Convivencia:</strong>
+                                                debe estar alineado con la normativa vigente y
+                                                establecer procedimientos, garantías y medidas aplicables.
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-navy-950 mb-4">
+                                2.1. Clasificación de las situaciones
+                            </h3>
+
+                            <p class="text-slate-600 text-sm leading-relaxed mb-5">
+                                La clasificación debe hacerse a partir de los hechos,
+                                las circunstancias, la afectación, la reiteración y
+                                los criterios normativos. No debe depender únicamente
+                                del nombre que una persona le dé al conflicto.
+                            </p>
+
+                            <div class="space-y-4">
+
+                                <article class="border border-green-200 rounded-xl overflow-hidden">
+
+                                    <div class="bg-green-50 p-4 flex items-center gap-3">
+                                        <span class="w-10 h-10 rounded-xl bg-green-600 text-white flex items-center justify-center font-bold">I</span>
+                                        <div>
+                                            <h4 class="font-bold text-green-950">Situaciones Tipo I</h4>
+                                            <p class="text-sm text-green-800">Conflictos manejados inadecuadamente sin las características de Tipo II o III.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-4">
+
+                                        <p class="text-sm text-slate-600">
+                                            Generalmente corresponden a conflictos esporádicos
+                                            que afectan el clima escolar, sin generar daño al
+                                            cuerpo o a la salud en los términos de la clasificación
+                                            normativa y sin reunir las condiciones de los otros tipos.
+                                        </p>
+
+                                        <p class="font-semibold text-sm mt-4">Actuaciones orientativas</p>
+
+                                        <ul class="list-disc pl-5 text-sm text-slate-600 mt-2 space-y-1">
+                                            <li>Reunir a las personas involucradas cuando sea seguro y procedente.</li>
+                                            <li>Facilitar una solución imparcial, equitativa y justa.</li>
+                                            <li>Promover reparación, reconciliación y aprendizaje.</li>
+                                            <li>Hacer seguimiento a los compromisos.</li>
+                                        </ul>
+
+                                    </div>
+                                </article>
+
+                                <article class="border border-amber-200 rounded-xl overflow-hidden">
+
+                                    <div class="bg-amber-50 p-4 flex items-center gap-3">
+                                        <span class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold">II</span>
+                                        <div>
+                                            <h4 class="font-bold text-amber-950">Situaciones Tipo II</h4>
+                                            <p class="text-sm text-amber-800">Agresión escolar, acoso escolar o ciberacoso con las características normativas correspondientes.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-4">
+
+                                        <p class="text-sm text-slate-600">
+                                            Incluyen situaciones de agresión escolar, acoso
+                                            escolar o ciberacoso que no revisten las características
+                                            de un presunto delito y que cumplen los criterios
+                                            legales de Tipo II. Comprenden, entre otros supuestos,
+                                            casos reiterados o sistemáticos y hechos que causan
+                                            daño al cuerpo o a la salud sin generar incapacidad
+                                            para cualquiera de los involucrados.
+                                        </p>
+
+                                        <p class="font-semibold text-sm mt-4">Actuaciones orientativas</p>
+
+                                        <ul class="list-disc pl-5 text-sm text-slate-600 mt-2 space-y-1">
+                                            <li>Garantizar atención en salud cuando corresponda.</li>
+                                            <li>Adoptar medidas para proteger a los involucrados.</li>
+                                            <li>Informar a las familias según el protocolo aplicable.</li>
+                                            <li>Documentar las actuaciones y convocar al Comité Escolar de Convivencia cuando corresponda.</li>
+                                            <li>Implementar acciones de reparación, restablecimiento de derechos y seguimiento.</li>
+                                        </ul>
+
+                                    </div>
+                                </article>
+
+                                <article class="border border-red-200 rounded-xl overflow-hidden">
+
+                                    <div class="bg-red-50 p-4 flex items-center gap-3">
+                                        <span class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold">III</span>
+                                        <div>
+                                            <h4 class="font-bold text-red-950">Situaciones Tipo III</h4>
+                                            <p class="text-sm text-red-800">Hechos que pueden constituir presuntos delitos.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-4">
+
+                                        <p class="text-sm text-slate-600">
+                                            Corresponden a agresiones escolares que sean
+                                            constitutivas de presuntos delitos contra la libertad,
+                                            integridad y formación sexual, u otros delitos
+                                            establecidos en la legislación penal colombiana.
+                                        </p>
+
+                                        <p class="font-semibold text-sm mt-4">Actuaciones orientativas</p>
+
+                                        <ul class="list-disc pl-5 text-sm text-slate-600 mt-2 space-y-1">
+                                            <li>Activar de inmediato las medidas de protección pertinentes.</li>
+                                            <li>Solicitar atención en salud o apoyo de emergencias si se requiere.</li>
+                                            <li>Informar a las autoridades competentes conforme al protocolo legal.</li>
+                                            <li>Convocar al Comité Escolar de Convivencia según corresponda.</li>
+                                            <li>Preservar la confidencialidad y evitar investigaciones improvisadas que revictimicen.</li>
+                                            <li>Realizar seguimiento institucional sin sustituir las competencias de las autoridades.</li>
+                                        </ul>
+
+                                    </div>
+                                </article>
+
+                            </div>
+
+                            <div class="mt-8 border-t border-slate-200 pt-7">
+
+                                <h3 class="text-xl font-bold text-navy-950">
+                                    2.2. Garantías del debido proceso
+                                </h3>
+
+                                <p class="text-sm text-slate-600 mt-2">
+                                    El artículo 29 de la Constitución establece el derecho
+                                    fundamental al debido proceso. En el ámbito escolar,
+                                    su aplicación debe armonizarse con los derechos de los
+                                    niños, niñas y adolescentes, la normativa educativa y
+                                    el Manual de Convivencia.
+                                </p>
+
+                                <div class="grid sm:grid-cols-2 gap-3 mt-5">
+
+                                    <div class="flex items-start gap-3 bg-slate-50 rounded-xl p-4">
+                                        <i data-lucide="ear" class="w-5 h-5 text-green-700 shrink-0"></i>
+                                        <div>
+                                            <p class="font-semibold text-sm">Derecho a ser escuchado</p>
+                                            <p class="text-xs text-slate-500 mt-1">Dar oportunidad real de presentar la propia versión.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-3 bg-slate-50 rounded-xl p-4">
+                                        <i data-lucide="file-search" class="w-5 h-5 text-green-700 shrink-0"></i>
+                                        <div>
+                                            <p class="font-semibold text-sm">Conocer los hechos</p>
+                                            <p class="text-xs text-slate-500 mt-1">Comunicar claramente los hechos atribuidos y las reglas presuntamente aplicables.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-3 bg-slate-50 rounded-xl p-4">
+                                        <i data-lucide="scale" class="w-5 h-5 text-green-700 shrink-0"></i>
+                                        <div>
+                                            <p class="font-semibold text-sm">Imparcialidad</p>
+                                            <p class="text-xs text-slate-500 mt-1">Valorar los hechos sin prejuzgar ni discriminar.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-3 bg-slate-50 rounded-xl p-4">
+                                        <i data-lucide="shield-check" class="w-5 h-5 text-green-700 shrink-0"></i>
+                                        <div>
+                                            <p class="font-semibold text-sm">Proporcionalidad</p>
+                                            <p class="text-xs text-slate-500 mt-1">Aplicar medidas previstas, razonables y acordes con el caso.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-3 bg-slate-50 rounded-xl p-4">
+                                        <i data-lucide="file-check-2" class="w-5 h-5 text-green-700 shrink-0"></i>
+                                        <div>
+                                            <p class="font-semibold text-sm">Decisión motivada</p>
+                                            <p class="text-xs text-slate-500 mt-1">Explicar los hechos valorados, la norma aplicada y la medida adoptada.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-3 bg-slate-50 rounded-xl p-4">
+                                        <i data-lucide="refresh-cw" class="w-5 h-5 text-green-700 shrink-0"></i>
+                                        <div>
+                                            <p class="font-semibold text-sm">Revisión y seguimiento</p>
+                                            <p class="text-xs text-slate-500 mt-1">Informar los mecanismos de revisión o recursos que procedan.</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-6">
+                                    <p class="font-bold text-amber-950">Importante</p>
+                                    <p class="text-sm text-amber-900 mt-1">
+                                        La mediación no es apropiada en todos los casos.
+                                        Ante violencia, asimetrías de poder o riesgo para
+                                        una persona, deben priorizarse su protección y
+                                        los procedimientos legales aplicables.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="flex justify-between gap-3 mt-8">
+
+                                <button onclick="goToModule(0)"
+                                        class="border border-slate-300 hover:bg-slate-50 rounded-xl px-4 py-3 font-semibold flex items-center gap-2">
+                                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                                    Anterior
+                                </button>
+
+                                <button onclick="goToModule(2)"
+                                        class="bg-navy-950 hover:bg-navy-800 text-white rounded-xl px-5 py-3 font-semibold flex items-center gap-2">
+                                    Estudiar caso
+                                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MÓDULO 3 -->
+                <section class="module-panel" id="module-2">
+
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+
+                        <div class="bg-gradient-to-r from-navy-950 to-navy-800 p-6 sm:p-8 text-white">
+
+                            <span class="text-green-300 font-bold text-xs uppercase tracking-widest">
+                                Módulo 03
+                            </span>
+
+                            <h2 class="text-2xl sm:text-3xl font-bold mt-3">
+                                Estudio de caso: del reporte a la actuación
+                            </h2>
+
+                            <p class="text-slate-300 mt-3 leading-relaxed">
+                                Analiza un caso hipotético y toma decisiones fundamentadas
+                                en la protección integral, la normativa y los procedimientos.
+                            </p>
+
+                        </div>
+
+                        <div class="p-5 sm:p-8">
+
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="messages-square" class="w-6 h-6 text-amber-700"></i>
+                                </div>
+
+                                <div>
+                                    <h3 class="font-bold text-lg">Caso: hostigamiento entre estudiantes</h3>
+                                    <p class="text-sm text-slate-500">Escenario pedagógico ficticio</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+
+                                <p class="text-slate-700 leading-relaxed">
+                                    Una docente recibe información de que un estudiante
+                                    ha sido objeto de burlas reiteradas por parte de varios
+                                    compañeros. Además, circulan mensajes ofensivos en
+                                    un grupo digital del curso. El estudiante manifiesta
+                                    temor de asistir a clase y solicita que no se divulgue
+                                    su situación.
+                                </p>
+
+                                <p class="text-slate-600 text-sm mt-4">
+                                    No se cuenta todavía con toda la información para
+                                    determinar el alcance de los hechos. La docente debe
+                                    actuar sin prejuzgar, evitar la exposición del estudiante
+                                    y activar los procedimientos institucionales.
+                                </p>
+
+                            </div>
+
+                            <h3 class="text-xl font-bold text-navy-950 mt-8 mb-5">
+                                ¿Cómo debe proceder la institución?
+                            </h3>
+
+                            <div class="space-y-4">
+
+                                <div class="border border-slate-200 rounded-xl p-5">
+
+                                    <div class="flex gap-3">
+                                        <span class="w-9 h-9 rounded-full bg-green-100 text-green-800 flex items-center justify-center font-bold shrink-0">1</span>
+                                        <div>
+                                            <h4 class="font-bold">Escuchar y proteger</h4>
+                                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                                                Escuchar al estudiante en un espacio seguro,
+                                                valorar posibles riesgos y adoptar medidas
+                                                razonables para evitar nuevas agresiones.
+                                                La confidencialidad debe respetarse sin
+                                                prometer secreto absoluto cuando exista
+                                                una obligación de protección o reporte.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="border border-slate-200 rounded-xl p-5">
+
+                                    <div class="flex gap-3">
+                                        <span class="w-9 h-9 rounded-full bg-green-100 text-green-800 flex items-center justify-center font-bold shrink-0">2</span>
+                                        <div>
+                                            <h4 class="font-bold">Registrar los hechos</h4>
+                                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                                                Registrar la fecha, el medio por el que se
+                                                recibió la información, los hechos relatados,
+                                                las medidas iniciales y las personas responsables
+                                                de continuar la atención. Proteger la información
+                                                personal y conservar los soportes conforme a
+                                                los procedimientos institucionales.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="border border-slate-200 rounded-xl p-5">
+
+                                    <div class="flex gap-3">
+                                        <span class="w-9 h-9 rounded-full bg-green-100 text-green-800 flex items-center justify-center font-bold shrink-0">3</span>
+                                        <div>
+                                            <h4 class="font-bold">Clasificar y activar el protocolo</h4>
+                                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                                                Valorar si los hechos reúnen los criterios
+                                                de Tipo I, II o III. Las burlas reiteradas y
+                                                el posible ciberacoso pueden corresponder a
+                                                Tipo II si cumplen las condiciones normativas.
+                                                Si aparecen indicios de un presunto delito,
+                                                debe activarse la ruta correspondiente a Tipo III.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="border border-slate-200 rounded-xl p-5">
+
+                                    <div class="flex gap-3">
+                                        <span class="w-9 h-9 rounded-full bg-green-100 text-green-800 flex items-center justify-center font-bold shrink-0">4</span>
+                                        <div>
+                                            <h4 class="font-bold">Realizar seguimiento</h4>
+                                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                                                Verificar la eficacia de las medidas de
+                                                protección, el cumplimiento de los acuerdos
+                                                que procedan y la evolución de la situación.
+                                                Escalar el caso si persiste el riesgo o aparecen
+                                                nuevos hechos.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mt-8 bg-green-50 border border-green-200 rounded-xl p-5">
+
+                                <h4 class="font-bold text-green-950 flex items-center gap-2">
+                                    <i data-lucide="lightbulb" class="w-5 h-5"></i>
+                                    Aprendizaje clave
+                                </h4>
+
+                                <p class="text-sm text-green-900 mt-2 leading-relaxed">
+                                    La institución no debe minimizar los hechos ni
+                                    calificar automáticamente el caso. Debe valorar
+                                    la información disponible, proteger a los estudiantes,
+                                    garantizar el debido proceso y cumplir los deberes
+                                    de reporte que correspondan.
+                                </p>
+
+                            </div>
+
+                            <div class="mt-8 border-t border-slate-200 pt-7">
+
+                                <h3 class="font-bold text-lg">Actividad de reflexión</h3>
+
+                                <p class="text-sm text-slate-600 mt-2">
+                                    Antes de avanzar, reflexiona sobre estas preguntas:
+                                </p>
+
+                                <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600 mt-4">
+                                    <li>¿Qué información debe registrarse sin emitir juicios?</li>
+                                    <li>¿Qué medidas inmediatas podrían proteger al estudiante?</li>
+                                    <li>¿Qué criterios permiten diferenciar una situación Tipo I de una Tipo II?</li>
+                                    <li>¿Qué actuaciones deben escalarse a otras instancias?</li>
+                                </ul>
+
+                            </div>
+
+                            <div class="flex justify-between gap-3 mt-8">
+
+                                <button onclick="goToModule(1)"
+                                        class="border border-slate-300 hover:bg-slate-50 rounded-xl px-4 py-3 font-semibold flex items-center gap-2">
+                                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                                    Anterior
+                                </button>
+
+                                <button onclick="goToModule(3)"
+                                        class="bg-navy-950 hover:bg-navy-800 text-white rounded-xl px-5 py-3 font-semibold flex items-center gap-2">
+                                    Ver plantilla de acta
+                                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MÓDULO 4 -->
+                <section class="module-panel" id="module-3">
+
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+
+                        <div class="bg-gradient-to-r from-navy-950 to-navy-800 p-6 sm:p-8 text-white">
+
+                            <span class="text-green-300 font-bold text-xs uppercase tracking-widest">
+                                Módulo 04
+                            </span>
+
+                            <h2 class="text-2xl sm:text-3xl font-bold mt-3">
+                                Actas, registros y evidencias
+                            </h2>
+
+                            <p class="text-slate-300 mt-3 leading-relaxed">
+                                Estructura registros útiles, objetivos y trazables
+                                para respaldar las actuaciones de convivencia escolar.
+                            </p>
+
+                        </div>
+
+                        <div class="p-5 sm:p-8">
+
+                            <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-8">
+
+                                <h3 class="font-bold text-blue-950 flex items-center gap-2">
+                                    <i data-lucide="info" class="w-5 h-5"></i>
+                                    Antes de elaborar un acta
+                                </h3>
+
+                                <p class="text-sm text-blue-900 mt-2 leading-relaxed">
+                                    El acta es un instrumento de documentación, no un
+                                    sustituto del procedimiento legal. Su contenido debe
+                                    ajustarse al tipo de situación, al Manual de Convivencia
+                                    y a los protocolos aplicables. No debe forzar la
+                                    participación de una persona afectada ni incluir
+                                    información sensible innecesaria.
+                                </p>
+
+                            </div>
+
+                            <h3 class="text-xl font-bold text-navy-950 mb-4">
+                                Plantilla orientativa de acta
+                            </h3>
+
+                            <div class="border border-slate-300 rounded-xl overflow-hidden">
+
+                                <div class="bg-slate-100 p-4 border-b border-slate-300">
+                                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500">
+                                        Registro institucional
+                                    </p>
+                                    <p class="font-bold text-navy-950 mt-1">
+                                        ACTA DE ATENCIÓN Y SEGUIMIENTO DE CONVIVENCIA ESCOLAR
+                                    </p>
+                                </div>
+
+                                <form id="actaForm" class="p-5 space-y-5">
+
+                                    <div class="grid sm:grid-cols-2 gap-4">
+
+                                        <div>
+                                            <label for="actaNumber" class="block text-sm font-semibold mb-2">
+                                                Número de acta
+                                            </label>
+                                            <input id="actaNumber"
+                                                   type="text"
+                                                   placeholder="Ej. CE-2026-001"
+                                                   class="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                                        </div>
+
+                                        <div>
+                                            <label for="actaDate" class="block text-sm font-semibold mb-2">
+                                                Fecha
+                                            </label>
+                                            <input id="actaDate"
+                                                   type="date"
+                                                   class="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                                        </div>
+
+                                        <div>
+                                            <label for="actaResponsible" class="block text-sm font-semibold mb-2">
+                                                Responsable del registro
+                                            </label>
+                                            <input id="actaResponsible"
+                                                   type="text"
+                                                   placeholder="Cargo o responsable"
+                                                   class="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                                        </div>
+
+                                        <div>
+                                            <label for="actaType" class="block text-sm font-semibold mb-2">
+                                                Tipo de actuación
+                                            </label>
+                                            <select id="actaType"
+                                                    class="w-full border border-slate-300 rounded-lg p-3 text-sm bg-white focus:ring-2 focus:ring-green-500 outline-none">
+                                                <option value="">Seleccionar</option>
+                                                <option>Registro inicial</option>
+                                                <option>Seguimiento</option>
+                                                <option>Reunión con familia</option>
+                                                <option>Comité Escolar de Convivencia</option>
+                                                <option>Verificación de compromisos</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <label for="actaFacts" class="block text-sm font-semibold mb-2">
+                                            1. Descripción objetiva de los hechos
+                                        </label>
+                                        <textarea id="actaFacts"
+                                                  rows="4"
+                                                  placeholder="Describir fecha, lugar, hechos observados o información recibida, distinguiendo lo observado de lo relatado."
+                                                  class="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none"></textarea>
+                                    </div>
+
+                                    <div>
+                                        <label for="actaActions" class="block text-sm font-semibold mb-2">
+                                            2. Actuaciones realizadas
+                                        </label>
+                                        <textarea id="actaActions"
+                                                  rows="4"
+                                                  placeholder="Registrar medidas de protección, comunicaciones, orientación, activación de protocolos y responsables."
+                                                  class="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none"></textarea>
+                                    </div>
+
+                                    <div>
+                                        <label for="actaDueProcess" class="block text-sm font-semibold mb-2">
+                                            3. Garantías y participación
+                                        </label>
+                                        <textarea id="actaDueProcess"
+                                                  rows="3"
+                                                  placeholder="Registrar las oportunidades de escucha, información brindada y garantías aplicadas, según corresponda."
+                                                  class="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none"></textarea>
+                                    </div>
+
+                                    <div>
+                                        <label for="actaAgreements" class="block text-sm font-semibold mb-2">
+                                            4. Acuerdos y compromisos
+                                        </label>
+                                        <textarea id="actaAgreements"
+                                                  rows="3"
+                                                  placeholder="Describir acciones concretas, responsables y plazos. No utilizar acuerdos para sustituir obligaciones legales."
+                                                  class="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none"></textarea>
+                                    </div>
+
+                                    <div>
+                                        <label for="actaFollowup" class="block text-sm font-semibold mb-2">
+                                            5. Seguimiento y cierre
+                                        </label>
+                                        <textarea id="actaFollowup"
+                                                  rows="3"
+                                                  placeholder="Indicar fecha de seguimiento, responsable, resultados y actuaciones pendientes."
+                                                  class="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none"></textarea>
+                                    </div>
+
+                                    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                                        <p class="text-sm text-amber-900">
+                                            <strong>Protección de datos:</strong>
+                                            diligencia esta plantilla con información
+                                            ficticia para practicar. En casos reales,
+                                            utiliza únicamente los datos necesarios y
+                                            guarda los registros en los repositorios
+                                            institucionales autorizados, con acceso restringido.
+                                        </p>
+                                    </div>
+
+                                    <div class="flex flex-wrap gap-3">
+
+                                        <button type="button"
+                                                onclick="previewActa()"
+                                                class="bg-green-600 hover:bg-green-700 text-white rounded-xl px-5 py-3 font-semibold flex items-center gap-2">
+                                            <i data-lucide="file-check" class="w-5 h-5"></i>
+                                            Generar vista previa
+                                        </button>
+
+                                        <button type="reset"
+                                                class="border border-slate-300 hover:bg-slate-50 rounded-xl px-5 py-3 font-semibold">
+                                            Limpiar formulario
+                                        </button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                            <div id="actaPreview"
+                                 class="hidden mt-6 bg-white border-2 border-slate-300 rounded-xl p-5 sm:p-8">
+
+                                <div class="flex justify-between items-start gap-4 border-b pb-4">
+                                    <div>
+                                        <p class="text-xs uppercase tracking-widest text-slate-500">
+                                            Vista previa
+                                        </p>
+                                        <h3 class="font-bold text-xl mt-2">
+                                            Registro de convivencia escolar
+                                        </h3>
+                                    </div>
+
+                                    <i data-lucide="file-check-2" class="w-8 h-8 text-green-700"></i>
+                                </div>
+
+                                <div id="actaPreviewContent" class="mt-5 space-y-4 text-sm"></div>
+
+                                <p class="text-xs text-slate-500 mt-6 border-t pt-4">
+                                    Documento de práctica. Debe revisarse y almacenarse
+                                    conforme al procedimiento institucional antes de su uso oficial.
+                                </p>
+
+                                <button onclick="printActa()"
+                                        class="mt-5 bg-navy-950 hover:bg-navy-800 text-white px-5 py-3 rounded-xl font-semibold">
+                                    Imprimir vista previa
+                                </button>
+
+                            </div>
+
+                            <div class="mt-8">
+
+                                <h3 class="text-xl font-bold text-navy-950">
+                                    Lista de verificación documental
+                                </h3>
+
+                                <div class="mt-4 space-y-3">
+
+                                    <label class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl">
+                                        <input type="checkbox" class="mt-1 accent-green-600">
+                                        <span class="text-sm text-slate-700">
+                                            Los hechos se describen con claridad y sin conclusiones anticipadas.
+                                        </span>
+                                    </label>
+
+                                    <label class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl">
+                                        <input type="checkbox" class="mt-1 accent-green-600">
+                                        <span class="text-sm text-slate-700">
+                                            Se identifican las actuaciones realizadas, sus fechas y responsables.
+                                        </span>
+                                    </label>
+
+                                    <label class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl">
+                                        <input type="checkbox" class="mt-1 accent-green-600">
+                                        <span class="text-sm text-slate-700">
+                                            Se documentan las medidas de protección y el seguimiento requerido.
+                                        </span>
+                                    </label>
+
+                                    <label class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl">
+                                        <input type="checkbox" class="mt-1 accent-green-600">
+                                        <span class="text-sm text-slate-700">
+                                            La información se maneja con confidencialidad y acceso restringido.
+                                        </span>
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex justify-between gap-3 mt-8">
+
+                                <button onclick="goToModule(2)"
+                                        class="border border-slate-300 hover:bg-slate-50 rounded-xl px-4 py-3 font-semibold flex items-center gap-2">
+                                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                                    Anterior
+                                </button>
+
+                                <button onclick="goToModule(4)"
+                                        class="bg-green-600 hover:bg-green-700 text-white rounded-xl px-5 py-3 font-semibold flex items-center gap-2">
+                                    Ir a evaluación
+                                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CERTIFICACIÓN -->
+                <section class="module-panel" id="module-4">
+
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+
+                        <div class="bg-gradient-to-r from-navy-950 to-navy-800 p-6 sm:p-8 text-white">
+
+                            <span class="text-green-300 font-bold text-xs uppercase tracking-widest">
+                                Evaluación final
+                            </span>
+
+                            <h2 class="text-2xl sm:text-3xl font-bold mt-3">
+                                Demuestra lo aprendido
+                            </h2>
+
+                            <p class="text-slate-300 mt-3 leading-relaxed">
+                                Responde las tres preguntas. Para desbloquear el
+                                certificado de demostración, debes seleccionar
+                                correctamente las tres respuestas.
+                            </p>
+
+                        </div>
+
+                        <div class="p-5 sm:p-8">
+
+                            <div class="grid sm:grid-cols-3 gap-4 mb-8">
+
+                                <div class="bg-slate-50 p-4 rounded-xl">
+                                    <p class="text-sm text-slate-500">Preguntas</p>
+                                    <p class="text-2xl font-bold text-navy-950">3</p>
+                                </div>
+
+                                <div class="bg-slate-50 p-4 rounded-xl">
+                                    <p class="text-sm text-slate-500">Aprobación</p>
+                                    <p class="text-2xl font-bold text-navy-950">100%</p>
+                                </div>
+
+                                <div class="bg-slate-50 p-4 rounded-xl">
+                                    <p class="text-sm text-slate-500">Intento</p>
+                                    <p class="text-2xl font-bold text-navy-950">Libre</p>
+                                </div>
+
+                            </div>
+
+                            <form id="quizForm" class="space-y-8">
+
+                                <!-- PREGUNTA 1 -->
+                                <fieldset class="border border-slate-200 rounded-xl p-5">
+
+                                    <legend class="font-bold text-lg px-2">
+                                        Pregunta 1. Debido proceso
+                                    </legend>
+
+                                    <p class="text-sm text-slate-600 mt-2 mb-5">
+                                        Un coordinador recibe una queja por una presunta
+                                        agresión entre estudiantes. Antes de decidir una
+                                        medida disciplinaria, ¿cuál actuación es la más adecuada?
+                                    </p>
+
+                                    <div class="space-y-3">
+
+                                        <label class="answer-option flex items-start gap-3 p-4 border border-slate-200 rounded-xl cursor-pointer">
+                                            <input type="radio" name="q1" value="a" class="mt-1 accent-green-600 shrink-0">
+                                            <span class="text-sm">
+                                                Aplicar de inmediato la sanción más severa para evitar que el hecho se repita.
+                                            </span>
+                                        </label>
+
+                                        <label class="answer-option flex items-start gap-3 p-4 border border-slate-200 rounded-xl cursor-pointer">
+                                            <input type="radio" name="q1" value="b" class="mt-1 accent-green-600 shrink-0">
+                                            <span class="text-sm">
+                                                Informar los hechos, escuchar a los involucrados,
+                                                valorar la información y aplicar el procedimiento
+                                                previsto, respetando las garantías correspondientes.
+                                            </span>
+                                        </label>
+
+                                        <label class="answer-option flex items-start gap-3 p-4 border border-slate-200 rounded-xl cursor-pointer">
+                                            <input type="radio" name="q1" value="c" class="mt-1 accent-green-600 shrink-0">
+                                            <span class="text-sm">
+                                                Solicitar al docente que resuelva verbalmente el caso sin dejar registro.
+                                            </span>
+                                        </label>
+
+                                    </div>
+
+                                    <div id="feedback-q1" class="hidden mt-4 rounded-lg p-3 text-sm"></div>
+
+                                </fieldset>
+
+                                <!-- PREGUNTA 2 -->
+                                <fieldset class="border border-slate-200 rounded-xl p-5">
+
+                                    <legend class="font-bold text-lg px-2">
+                                        Pregunta 2. Situación Tipo II
+                                    </legend>
+
+                                    <p class="text-sm text-slate-600 mt-2 mb-5">
+                                        Se reportan burlas sistemáticas y mensajes
+                                        humillantes contra un estudiante por medios
+                                        digitales. Los hechos podrían corresponder a
+                                        acoso escolar o ciberacoso y no se ha identificado
+                                        inicialmente un presunto delito. ¿Qué debe hacer la institución?
+                                    </p>
+
+                                    <div class="space-y-3">
+
+                                        <label class="answer-option flex items-start gap-3 p-4 border border-slate-200 rounded-xl cursor-pointer">
+                                            <input type="radio" name="q2" value="a" class="mt-1 accent-green-600 shrink-0">
+                                            <span class="text-sm">
+                                                Tratar el asunto exclusivamente como una discusión menor y pedir a los estudiantes que se disculpen.
+                                            </span>
+                                        </label>
+
+                                        <label class="answer-option flex items-start gap-3 p-4 border border-slate-200 rounded-xl cursor-pointer">
+                                            <input type="radio" name="q2" value="b" class="mt-1 accent-green-600 shrink-0">
+                                            <span class="text-sm">
+                                                Publicar los mensajes en los canales del colegio para que la comunidad identifique a los responsables.
+                                            </span>
+                                        </label>
+
+                                        <label class="answer-option flex items-start gap-3 p-4 border border-slate-200 rounded-xl cursor-pointer">
+                                            <input type="radio" name="q2" value="c" class="mt-1 accent-green-600 shrink-0">
+                                            <span class="text-sm">
+                                                Proteger al estudiante, documentar los hechos,
+                                                valorar los criterios de Tipo II y activar
+                                                el protocolo aplicable, con seguimiento
+                                                y las comunicaciones correspondientes.
+                                            </span>
+                                        </label>
+
+                                    </div>
+
+                                    <div id="feedback-q2" class="hidden mt-4 rounded-lg p-3 text-sm"></div>
+
+                                </fieldset>
+
+                                <!-- PREGUNTA 3 -->
+                                <fieldset class="border border-slate-200 rounded-xl p-5">
+
+                                    <legend class="font-bold text-lg px-2">
+                                        Pregunta 3. Presunto delito
+                                    </legend>
+
+                                    <p class="text-sm text-slate-600 mt-2 mb-5">
+                                        Un estudiante comunica un hecho que podría
+                                        constituir un delito contra su libertad e
+                                        integridad sexual. ¿Cuál es la actuación institucional correcta?
+                                    </p>
+
+                                    <div class="space-y-3">
+
+                                        <label class="answer-option flex items-start gap-3 p-4 border border-slate-200 rounded-xl cursor-pointer">
+                                            <input type="radio" name="q3" value="a" class="mt-1 accent-green-600 shrink-0">
+                                            <span class="text-sm">
+                                                Activar de inmediato las medidas de protección,
+                                                gestionar la atención que se requiera y reportar
+                                                a las autoridades competentes conforme al protocolo,
+                                                evitando la revictimización.
+                                            </span>
+                                        </label>
+
+                                        <label class="answer-option flex items-start gap-3 p-4 border border-slate-200 rounded-xl cursor-pointer">
+                                            <input type="radio" name="q3" value="b" class="mt-1 accent-green-600 shrink-0">
+                                            <span class="text-sm">
+                                                Esperar a que el Comité Escolar de Convivencia
+                                                determine si el hecho ocurrió antes de informar
+                                                a cualquier autoridad.
+                                            </span>
+                                        </label>
+
+                                        <label class="answer-option flex items-start gap-3 p-4 border border-slate-200 rounded-xl cursor-pointer">
+                                            <input type="radio" name="q3" value="c" class="mt-1 accent-green-600 shrink-0">
+                                            <span class="text-sm">
+                                                Citar a todas las personas involucradas para
+                                                realizar una confrontación y buscar una conciliación.
+                                            </span>
+                                        </label>
+
+                                    </div>
+
+                                    <div id="feedback-q3" class="hidden mt-4 rounded-lg p-3 text-sm"></div>
+
+                                </fieldset>
+
+                                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                                    <p class="text-sm text-blue-900">
+                                        <strong>Recomendación:</strong>
+                                        responde las tres preguntas y revisa la retroalimentación.
+                                        Si no alcanzas el resultado requerido, podrás intentarlo nuevamente.
+                                    </p>
+                                </div>
+
+                                <button type="submit"
+                                        class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition">
+                                    <i data-lucide="check-circle" class="w-5 h-5"></i>
+                                    Evaluar mis respuestas
+                                </button>
+
+                            </form>
+
+                            <div id="quizResult"
+                                 class="hidden mt-8 p-6 rounded-2xl border">
+
+                                <div class="flex items-start gap-4">
+
+                                    <div id="resultIcon"
+                                         class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0">
+                                        <i data-lucide="award" class="w-7 h-7"></i>
+                                    </div>
+
+                                    <div>
+                                        <h3 id="resultTitle" class="font-bold text-xl"></h3>
+                                        <p id="resultMessage" class="text-sm mt-2 leading-relaxed"></p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- CERTIFICADO -->
+                            <div id="certificateSection" class="hidden mt-10">
+
+                                <div class="text-center mb-6">
+                                    <div class="inline-flex bg-green-100 text-green-800 p-4 rounded-2xl">
+                                        <i data-lucide="award" class="w-8 h-8"></i>
+                                    </div>
+
+                                    <h3 class="text-2xl font-bold text-navy-950 mt-4">
+                                        ¡Has aprobado la evaluación!
+                                    </h3>
+
+                                    <p class="text-slate-600 text-sm mt-2">
+                                        Ingresa el nombre que aparecerá en tu certificado de demostración.
+                                    </p>
+                                </div>
+
+                                <div class="max-w-xl mx-auto mb-8">
+
+                                    <label for="participantName"
+                                           class="block text-sm font-semibold mb-2">
+                                        Nombre completo del participante
+                                    </label>
+
+                                    <input id="participantName"
+                                           type="text"
+                                           maxlength="120"
+                                           autocomplete="name"
+                                           placeholder="Escribe tu nombre completo"
+                                           class="w-full border border-slate-300 rounded-xl p-4 focus:ring-2 focus:ring-green-500 outline-none">
+
+                                    <p class="text-xs text-slate-500 mt-2">
+                                        El nombre se utiliza únicamente en esta demostración
+                                        local. No se verifica la identidad del participante.
+                                    </p>
+
+                                    <button onclick="generateCertificate()"
+                                            class="w-full mt-4 bg-navy-950 hover:bg-navy-800 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2">
+                                        <i data-lucide="file-badge" class="w-5 h-5"></i>
+                                        Generar certificado
+                                    </button>
+
+                                </div>
+
+                                <div id="certificate"
+                                     class="hidden certificate-paper rounded-lg p-6 sm:p-12 shadow-xl text-center">
+
+                                    <div class="relative z-10">
+
+                                        <div class="flex justify-center mb-5">
+                                            <div class="w-16 h-16 rounded-full border-2 border-amber-600 flex items-center justify-center">
+                                                <i data-lucide="graduation-cap" class="w-9 h-9 text-navy-950"></i>
+                                            </div>
+                                        </div>
+
+                                        <p class="text-xs sm:text-sm uppercase tracking-[0.25em] text-slate-500 font-semibold">
+                                            Formación y desarrollo profesional
+                                        </p>
+
+                                        <h2 class="certificate-serif text-3xl sm:text-5xl text-navy-950 mt-5">
+                                            Certificado de Aprobación
+                                        </h2>
+
+                                        <div class="w-24 h-1 bg-amber-600 mx-auto mt-5"></div>
+
+                                        <p class="text-slate-600 mt-8">
+                                            Se otorga el presente certificado a:
+                                        </p>
+
+                                        <h3 id="certificateName"
+                                            class="certificate-serif text-2xl sm:text-4xl text-navy-950 font-bold mt-4 break-words">
+                                            Nombre del participante
+                                        </h3>
+
+                                        <p class="text-slate-600 mt-6 leading-relaxed max-w-2xl mx-auto">
+                                            Por haber aprobado la evaluación de demostración del curso
+                                        </p>
+
+                                        <h4 class="certificate-serif text-xl sm:text-2xl font-bold text-navy-950 mt-3">
+                                            Convivencia Escolar, Ley 1620 de 2013 y Debido Proceso
+                                        </h4>
+
+                                        <div class="grid sm:grid-cols-2 gap-6 max-w-xl mx-auto mt-8">
+
+                                            <div class="border-t border-slate-300 pt-4">
+                                                <p class="text-xs uppercase tracking-widest text-slate-500">
+                                                    Intensidad horaria de referencia
+                                                </p>
+                                                <p class="font-bold text-lg text-navy-950 mt-2">
+                                                    40 horas
+                                                </p>
+                                            </div>
+
+                                            <div class="border-t border-slate-300 pt-4">
+                                                <p class="text-xs uppercase tracking-widest text-slate-500">
+                                                    Fecha de generación
+                                                </p>
+                                                <p id="certificateDate"
+                                                   class="font-bold text-lg text-navy-950 mt-2">
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="mt-8 max-w-2xl mx-auto bg-green-50 border border-green-200 p-4 rounded-lg">
+
+                                            <p class="text-sm font-semibold text-green-900">
+                                                Referente normativo: Ley 1620 de 2013
+                                            </p>
+
+                                            <p class="text-xs text-green-800 mt-2 leading-relaxed">
+                                                Formación orientada al reconocimiento y la aplicación
+                                                de principios de convivencia escolar, protección
+                                                integral, activación de rutas de atención y garantías
+                                                del debido proceso.
+                                            </p>
+
+                                        </div>
+
+                                        <div class="mt-10 flex justify-center">
+                                            <div class="text-center">
+
+                                                <p class="certificate-serif text-2xl italic text-navy-950">
+                                                    ✦ Formación con propósito ✦
+                                                </p>
+
+                                                <div class="w-64 border-t border-slate-400 mt-3 mx-auto"></div>
+
+                                                <p class="font-bold text-sm text-navy-950 mt-3">
+                                                    Firma digital simulada
+                                                </p>
+
+                                                <p class="text-xs text-slate-500 mt-1">
+                                                    Coordinación de Formación
+                                                </p>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-8 pt-5 border-t border-slate-200">
+
+                                            <p class="text-xs text-slate-500 leading-relaxed">
+                                                CERTIFICADO DE DEMOSTRACIÓN GENERADO LOCALMENTE.
+                                                No constituye certificación institucional oficial.
+                                                La intensidad horaria de 40 horas es ilustrativa y
+                                                debe ajustarse a la duración real y a la aprobación
+                                                formal del programa por la institución.
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div id="certificateActions"
+                                     class="hidden flex flex-wrap justify-center gap-3 mt-6">
+
+                                    <button onclick="window.print()"
+                                            class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl flex items-center gap-2">
+                                        <i data-lucide="printer" class="w-5 h-5"></i>
+                                        Imprimir o guardar en PDF
+                                    </button>
+
+                                    <button onclick="downloadCertificate()"
+                                            class="border border-slate-300 hover:bg-slate-50 text-slate-800 font-semibold py-3 px-6 rounded-xl flex items-center gap-2">
+                                        <i data-lucide="download" class="w-5 h-5"></i>
+                                        Descargar certificado HTML
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+        </div>
+
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-navy-950 text-white">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+
+            <div class="grid sm:grid-cols-2 gap-8">
+
+                <div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-green-500 p-2 rounded-lg">
+                            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                        </div>
+                        <p class="font-bold text-lg">Formación Docente</p>
+                    </div>
+
+                    <p class="text-sm text-slate-300 mt-4 leading-relaxed max-w-md">
+                        Herramientas para fortalecer la convivencia escolar,
+                        la protección de los estudiantes y la gestión institucional
+                        basada en evidencias.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold">Referentes para consulta</h3>
+
+                    <ul class="space-y-3 mt-4 text-sm text-slate-300">
+
+                        <li>
+                            <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=52287"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="hover:text-green-300 underline underline-offset-4">
+                                Ley 1620 de 2013
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="hover:text-green-300 underline underline-offset-4">
+                                Ley 1618 de 2013
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="hover:text-green-300 underline underline-offset-4">
+                                Constitución Política de Colombia
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.mineducacion.gov.co/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="hover:text-green-300 underline underline-offset-4">
+                                Ministerio de Educación Nacional
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/15 mt-8 pt-6 text-xs text-slate-400 flex flex-col sm:flex-row justify-between gap-3">
+
+                <p>Recurso educativo de formación y autoaprendizaje.</p>
+
+                <p>© <span id="footerYear"></span> · Versión piloto</p>
+
+            </div>
+
+            <p class="text-xs text-slate-400 leading-relaxed mt-5">
+                Este material es orientativo y no reemplaza la consulta de la normativa
+                vigente, los protocolos de las autoridades competentes ni el Manual
+                de Convivencia institucional. Los procedimientos deben adecuarse al
+                contexto y a las obligaciones legales aplicables.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ==========================================================
+        // NAVEGACIÓN ENTRE MÓDULOS
+        // ==========================================================
+
+        const totalModules = 5;
+        const visitedModules = new Set();
+
+        function goToModule(index) {
+
+            if (index < 0 || index >= totalModules) {
+                return;
+            }
+
+            document.querySelectorAll('.module-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+
+            const target = document.getElementById('module-' + index);
+
+            if (target) {
+                target.classList.add('active');
+            }
+
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.toggle(
+                    'active',
+                    Number(link.dataset.module) === index
+                );
+            });
+
+            visitedModules.add(index);
+            updateProgress();
+
+            document.getElementById('sidebar').classList.add('hidden');
+            document.getElementById('sidebar').classList.add('md:block');
+
+            window.scrollTo({
+                top: document.getElementById('formacion').offsetTop - 75,
+                behavior: 'smooth'
+            });
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        function updateProgress() {
+
+            const count = visitedModules.size;
+            const percentage = (count / totalModules) * 100;
+
+            document.getElementById('progressText').textContent =
+                count + ' de ' + totalModules;
+
+            document.getElementById('progressBar').style.width =
+                percentage + '%';
+        }
+
+        // ==========================================================
+        // NAVEGACIÓN MÓVIL
+        // ==========================================================
+
+        document.getElementById('mobileMenuButton').addEventListener(
+            'click',
+            function () {
+
+                const sidebar = document.getElementById('sidebar');
+
+                const isHidden = sidebar.classList.contains('hidden');
+
+                if (isHidden) {
+                    sidebar.classList.remove('hidden');
+                } else {
+                    sidebar.classList.add('hidden');
+                }
+
+                this.setAttribute(
+                    'aria-expanded',
+                    String(isHidden)
+                );
+            }
+        );
+
+        // ==========================================================
+        // ACORDEONES
+        // ==========================================================
+
+        function toggleLesson(id) {
+
+            const lesson = document.getElementById(id);
+
+            lesson.classList.toggle('open');
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // ==========================================================
+        // FECHA DE HOY
+        // ==========================================================
+
+        function getLocalDateISO() {
+
+            const now = new Date();
+
+            const year = now.getFullYear();
+
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+
+            const day = String(now.getDate()).padStart(2, '0');
+
+            return `${year}-${month}-${day}`;
+        }
+
+        function formatLocalDate(date = new Date()) {
+
+            return new Intl.DateTimeFormat('es-CO', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            }).format(date);
+        }
+
+        document.getElementById('actaDate').value = getLocalDateISO();
+
+        document.getElementById('footerYear').textContent =
+            new Date().getFullYear();
+
+        // ==========================================================
+        // PLANTILLA DE ACTA
+        // ==========================================================
+
+        function escapeHTML(value) {
+
+            return String(value ?? '').replace(/[&<>"']/g, function (char) {
+
+                const entities = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                };
+
+                return entities[char];
+            });
+        }
+
+        function formatMultiline(value) {
+
+            return escapeHTML(value).replace(/\r?\n/g, '<br>');
+        }
+
+        function previewActa() {
+
+            const fields = [
+                ['Número de acta', 'actaNumber'],
+                ['Fecha', 'actaDate'],
+                ['Responsable', 'actaResponsible'],
+                ['Tipo de actuación', 'actaType'],
+                ['Descripción de los hechos', 'actaFacts'],
+                ['Actuaciones realizadas', 'actaActions'],
+                ['Garantías y participación', 'actaDueProcess'],
+                ['Acuerdos y compromisos', 'actaAgreements'],
+                ['Seguimiento y cierre', 'actaFollowup']
+            ];
+
+            const content = fields.map(([label, id]) => {
+
+                const value = document.getElementById(id).value.trim();
+
+                return `
+                    <div>
+                        <p class="font-bold text-slate-800 mb-1">
+                            ${escapeHTML(label)}
+                        </p>
+                        <p class="text-slate-600 leading-relaxed">
+                            ${value ? formatMultiline(value) : '<span class="italic text-slate-400">Sin diligenciar</span>'}
+                        </p>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('actaPreviewContent').innerHTML = content;
+
+            document.getElementById('actaPreview').classList.remove('hidden');
+
+            document.getElementById('actaPreview').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function printActa() {
+
+            const preview = document.getElementById('actaPreview');
+
+            if (!preview || preview.classList.contains('hidden')) {
+                alert('Primero genera la vista previa del acta.');
+                return;
+            }
+
+            const printWindow = window.open('', '_blank');
+
+            if (!printWindow) {
+                alert('Permite las ventanas emergentes para imprimir el acta.');
+                return;
+            }
+
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="es">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Vista previa del acta</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            padding: 30px;
+                            color: #1e293b;
+                            line-height: 1.6;
+                        }
+                        h1 { font-size: 22px; }
+                        .item { margin-bottom: 20px; }
+                        .label { font-weight: bold; margin-bottom: 4px; }
+                        .footer {
+                            margin-top: 30px;
+                            padding-top: 15px;
+                            border-top: 1px solid #ccc;
+                            font-size: 12px;
+                        }
+                        @media print {
+                            body { padding: 0; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>Registro de convivencia escolar</h1>
+                    ${document.getElementById('actaPreviewContent').innerHTML}
+                    <div class="footer">
+                        Documento de práctica. Revisar conforme al procedimiento institucional.
+                    </div>
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                        };
+                    <\/script>
+                </body>
+                </html>
+            `);
+
+            printWindow.document.close();
+        }
+
+        document.getElementById('actaForm').addEventListener(
+            'reset',
+            function () {
+
+                setTimeout(() => {
+
+                    document.getElementById('actaDate').value = getLocalDateISO();
+
+                    document.getElementById('actaPreview').classList.add('hidden');
+
+                }, 0);
+            }
+        );
+
+        // ==========================================================
+        // EVALUACIÓN FINAL
+        // ==========================================================
+
+        const correctAnswers = {
+            q1: 'b',
+            q2: 'c',
+            q3: 'a'
+        };
+
+        const explanations = {
+
+            q1: {
+                correct: 'Correcto. El debido proceso exige respetar las garantías aplicables, comunicar los hechos, escuchar a las personas involucradas y fundamentar las decisiones.',
+                incorrect: 'Recuerda que no se debe imponer una medida de manera automática. Deben respetarse las garantías del debido proceso y el procedimiento previsto en el Manual de Convivencia.'
+            },
+
+            q2: {
+                correct: 'Correcto. Los hechos deben valorarse conforme a los criterios normativos, protegiendo al estudiante, activando el protocolo correspondiente y garantizando el seguimiento.',
+                incorrect: 'Las burlas reiteradas y el ciberacoso pueden constituir una situación Tipo II si reúnen las condiciones legales. No deben minimizarse ni exponerse públicamente.'
+            },
+
+            q3: {
+                correct: 'Correcto. Ante hechos que puedan constituir un delito, la institución debe priorizar la protección y activar oportunamente la ruta y los reportes a las autoridades competentes.',
+                incorrect: 'La institución no debe esperar a realizar una investigación interna que sustituya a las autoridades. Debe proteger al estudiante y cumplir las obligaciones de reporte aplicables.'
+            }
+
+        };
+
+        document.getElementById('quizForm').addEventListener(
+            'submit',
+            function (event) {
+
+                event.preventDefault();
+
+                let score = 0;
+
+                const unanswered = [];
+
+                Object.keys(correctAnswers).forEach(question => {
+
+                    const selected = document.querySelector(
+                        `input[name="${question}"]:checked`
+                    );
+
+                    const feedback = document.getElementById(
+                        'feedback-' + question
+                    );
+
+                    feedback.classList.remove(
+                        'hidden',
+                        'bg-green-50',
+                        'text-green-900',
+                        'bg-red-50',
+                        'text-red-900'
+                    );
+
+                    if (!selected) {
+
+                        unanswered.push(question);
+
+                        feedback.textContent =
+                            'Selecciona una respuesta para esta pregunta.';
+
+                        feedback.classList.add(
+                            'bg-red-50',
+                            'text-red-900'
+                        );
+
+                        return;
+                    }
+
+                    if (selected.value === correctAnswers[question]) {
+
+                        score++;
+
+                        feedback.textContent = explanations[question].correct;
+
+                        feedback.classList.add(
+                            'bg-green-50',
+                            'text-green-900'
+                        );
+
+                    } else {
+
+                        feedback.textContent = explanations[question].incorrect;
+
+                        feedback.classList.add(
+                            'bg-red-50',
+                            'text-red-900'
+                        );
+                    }
+
+                });
+
+                const result = document.getElementById('quizResult');
+
+                const resultTitle = document.getElementById('resultTitle');
+
+                const resultMessage = document.getElementById('resultMessage');
+
+                const resultIcon = document.getElementById('resultIcon');
+
+                result.classList.remove(
+                    'hidden',
+                    'bg-green-50',
+                    'border-green-200',
+                    'bg-amber-50',
+                    'border-amber-200'
+                );
+
+                if (score === 3) {
+
+                    result.classList.add(
+                        'bg-green-50',
+                        'border-green-200'
+                    );
+
+                    resultIcon.className =
+                        'w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-green-100 text-green-700';
+
+                    resultTitle.textContent =
+                        '¡Evaluación aprobada!';
+
+                    resultMessage.textContent =
+                        'Resultado: 3 de 3 respuestas correctas (100 %). ' +
+                        'Has demostrado comprensión de los principios evaluados. ' +
+                        'Se ha desbloqueado el certificado de demostración.';
+
+                    document.getElementById('certificateSection').classList.remove('hidden');
+
+                } else {
+
+                    result.classList.add(
+                        'bg-amber-50',
+                        'border-amber-200'
+                    );
+
+                    resultIcon.className =
+                        'w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-amber-100 text-amber-700';
+
+                    resultTitle.textContent =
+                        'Necesitas revisar algunas respuestas';
+
+                    resultMessage.textContent =
+                        'Resultado: ' + score + ' de 3 respuestas correctas (' +
+                        Math.round((score / 3) * 100) +
+                        ' %). Revisa la retroalimentación, consulta los módulos y vuelve a intentarlo.';
+
+                    document.getElementById('certificateSection').classList.add('hidden');
+
+                    document.getElementById('certificate').classList.add('hidden');
+
+                    document.getElementById('certificateActions').classList.add('hidden');
+                }
+
+                result.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+
+            }
+        );
+
+        // ==========================================================
+        // GENERACIÓN DEL CERTIFICADO
+        // ==========================================================
+
+        function generateCertificate() {
+
+            const participantName = document.getElementById(
+                'participantName'
+            ).value.trim();
+
+            if (!participantName) {
+
+                alert('Por favor, escribe el nombre completo del participante.');
+
+                document.getElementById('participantName').focus();
+
+                return;
+            }
+
+            const allCorrect = Object.keys(correctAnswers).every(question => {
+
+                const selected = document.querySelector(
+                    `input[name="${question}"]:checked`
+                );
+
+                return selected && selected.value === correctAnswers[question];
+            });
+
+            if (!allCorrect) {
+
+                alert(
+                    'El certificado solo puede mostrarse cuando las tres respuestas sean correctas.'
+                );
+
+                document.getElementById('certificate').classList.add('hidden');
+
+                document.getElementById('certificateActions').classList.add('hidden');
+
+                return;
+            }
+
+            document.getElementById('certificateName').textContent =
+                participantName;
+
+            document.getElementById('certificateDate').textContent =
+                formatLocalDate();
+
+            document.getElementById('certificate').classList.remove('hidden');
+
+            document.getElementById('certificateActions').classList.remove('hidden');
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+
+            document.getElementById('certificate').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // ==========================================================
+        // DESCARGA DE CERTIFICADO EN HTML
+        // ==========================================================
+
+        function downloadCertificate() {
+
+            const certificate = document.getElementById('certificate');
+
+            if (certificate.classList.contains('hidden')) {
+
+                alert('Primero debes generar el certificado.');
+
+                return;
+            }
+
+            const name = document.getElementById(
+                'certificateName'
+            ).textContent;
+
+            const standaloneHTML = `
+                <!DOCTYPE html>
+                <html lang="es">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Certificado de demostración - ${escapeHTML(name)}</title>
+                    <style>
+                        * { box-sizing: border-box; }
+
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 0;
+                            padding: 24px;
+                            background: #f4f7fb;
+                            color: #102a43;
+                        }
+
+                        .certificate {
+                            max-width: 1100px;
+                            margin: 0 auto;
+                            padding: 60px 40px;
+                            background: white;
+                            border: 8px double #b99b58;
+                            text-align: center;
+                        }
+
+                        .subtitle {
+                            text-transform: uppercase;
+                            letter-spacing: 4px;
+                            color: #64748b;
+                            font-size: 13px;
+                        }
+
+                        h1 {
+                            font-family: Georgia, serif;
+                            font-size: clamp(28px, 4vw, 48px);
+                        }
+
+                        .name {
+                            font-family: Georgia, serif;
+                            font-size: clamp(24px, 4vw, 40px);
+                            overflow-wrap: anywhere;
+                        }
+
+                        .line {
+                            width: 100px;
+                            height: 4px;
+                            background: #b99b58;
+                            margin: 25px auto;
+                        }
+
+                        .notice {
+                            background: #f0fdf4;
+                            border: 1px solid #bbf7d0;
+                            padding: 20px;
+                            margin-top: 30px;
+                        }
+
+                        .disclaimer {
+                            color: #64748b;
+                            font-size: 12px;
+                            line-height: 1.6;
+                            margin-top: 30px;
+                            border-top: 1px solid #e2e8f0;
+                            padding-top: 20px;
+                        }
+
+                        button {
+                            display: block;
+                            margin: 20px auto;
+                            padding: 12px 24px;
+                            border: none;
+                            background: #102a43;
+                            color: white;
+                            border-radius: 8px;
+                            cursor: pointer;
+                        }
+
+                        @media print {
+                            body {
+                                background: white;
+                                padding: 0;
+                            }
+
+                            .certificate {
+                                max-width: none;
+                                min-height: 180mm;
+                            }
+
+                            button {
+                                display: none;
+                            }
+
+                            @page {
+                                size: landscape;
+                                margin: 10mm;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+
+                    <div class="certificate">
+
+                        <p style="font-size:40px">✦</p>
+
+                        <p class="subtitle">Formación y desarrollo profesional</p>
+
+                        <h1>Certificado de Aprobación</h1>
+
+                        <div class="line"></div>
+
+                        <p>Se otorga el presente certificado a:</p>
+
+                        <h2 class="name">${escapeHTML(name)}</h2>
+
+                        <p>Por haber aprobado la evaluación de demostración del curso:</p>
+
+                        <h2>
+                            Convivencia Escolar, Ley 1620 de 2013 y Debido Proceso
+                        </h2>
+
+                        <p><strong>Intensidad horaria de referencia: 40 horas</strong></p>
+
+                        <p><strong>Fecha:</strong> ${escapeHTML(
+                            document.getElementById('certificateDate').textContent
+                        )}</p>
+
+                        <div class="notice">
+                            <strong>Referente normativo: Ley 1620 de 2013</strong>
+                            <p>
+                                Formación orientada al reconocimiento y aplicación de
+                                principios de convivencia escolar, protección integral,
+                                activación de rutas de atención y garantías del debido proceso.
+                            </p>
+                        </div>
+
+                        <div style="margin-top:45px">
+                            <p style="font-family:Georgia,serif;font-size:24px;font-style:italic">
+                                ✦ Formación con propósito ✦
+                            </p>
+                            <p>______________________________</p>
+                            <p><strong>Firma digital simulada</strong></p>
+                            <p>Coordinación de Formación</p>
+                        </div>
+
+                        <div class="disclaimer">
+                            CERTIFICADO DE DEMOSTRACIÓN GENERADO LOCALMENTE.
+                            No constituye certificación institucional oficial.
+                            La intensidad horaria de 40 horas es ilustrativa y debe
+                            ajustarse a la duración real y a la aprobación formal del programa.
+                        </div>
+
+                    </div>
+
+                    <button onclick="window.print()">Imprimir o guardar como PDF</button>
+
+                </body>
+                </html>
+            `;
+
+            const blob = new Blob(
+                [standaloneHTML],
+                { type: 'text/html;charset=utf-8' }
+            );
+
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+
+            link.href = url;
+
+            link.download = 'certificado_convivencia_escolar.html';
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            link.remove();
+
+            URL.revokeObjectURL(url);
+        }
+
+        // ==========================================================
+        // INICIALIZACIÓN
+        // ==========================================================
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            visitedModules.add(0);
+
+            updateProgress();
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+
+        });
+    </script>
+
+</body>
+</html>
